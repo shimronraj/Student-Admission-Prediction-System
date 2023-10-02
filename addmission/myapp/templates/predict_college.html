@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predict College</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0; /* Light gray background */
+        text-align: center;
+      }
+
+      .container {
+        background-color: #ffffff; /* White background */
+        border-radius: 15px; /* Adding curved corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333; /* Dark gray text color */
+        background-color: #0077b6; /* Deep blue background for heading */
+        padding: 10px;
+        border-radius: 15px; /* Adding curved corners to the heading */
+        color: #fff; /* White text color */
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      input[type="number"] {
+        width: 50%; /* Reduce the width of the input box */
+        padding: 8px; /* Adjust the padding */
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 2px solid #ccc; /* Light gray border */
+        border-radius: 6px;
+      }
+
+      button[type="submit"] {
+        background-color: #4CAF50; /* Green button background */
+        color: #fff; /* White text color */
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #45a049; /* Darker green on hover */
+      }
+
+      h2 {
+        font-size: 24px;
+        color: #fff; /* White text color */
+        background-color: #4CAF50; /* Green background for heading */
+        padding: 10px;
+        border-radius: 15px; /* Adding curved corners to the heading */
+      }
+
+      p {
+        font-size: 18px;
+        color: #333; /* Dark gray text color */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Predict College</h1>
+      <form action="{% url 'myapp:predict_college' %}" method="post">
+        {% csrf_token %} {{ form.as_p }} <!-- Render the form fields as paragraphs -->
+        <input type="submit" value="Predict College" style="background-color: #0077b6; color: #fff; border: none; border-radius: 6px; padding: 12px 24px; cursor: pointer; font-size: 18px;">
+      </form>
+      {% if predicted_college %}
+      <h2>Predicted College</h2>
+      <p>{{ predicted_college }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
